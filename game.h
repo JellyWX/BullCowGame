@@ -10,18 +10,18 @@ enum class GuessMode
   LENGTH_ERR
 };
 
-class Game()
+class Game
 {
 public:
   void Reset();
-  int getMaxTries();
+  int getMaTries();
   int getCurrentTry();
   bool getGameWon();
   GuessMode ValidateGuess(std::string);
   
   
 private:
-  int CurrentTry;
-  int MaxTries;
+  int CurrentTry = 0;
+  int MaxTries = 5;
   
-}
+};

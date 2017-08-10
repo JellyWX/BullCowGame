@@ -3,22 +3,22 @@
 #include "game.h"
 
 
-int game::getMaxTries()
+int Game::getMaxTries()
 {
-  
+  return MaxTries;
 }
 
-int getCurrentTry()
+int Game::getCurrentTry()
 {
-  
+  return CurrentTry;
 }
 
-bool getGameWon()
+bool Game::getGameWon()
 {
-  
+  return false;
 }
 
-void game::Reset()
+void Game::Reset()
 {
   return;
 }

@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include "game.h"
+
 
 constexpr int LENGTH = 5;
 constexpr int TURNS = 6;
