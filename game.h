@@ -5,7 +5,7 @@ enum class GuessMode
 {
   INVALID,
   OK,
-  WRONG_CASE,
+  NOT_LETTER,
   NOT_ISO,
   LENGTH_ERR
 };

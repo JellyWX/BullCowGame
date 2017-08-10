@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
+
 #include "game.h"
 
 Game BCG;
@@ -25,6 +27,7 @@ void PlayGame()
   for(int i=0;i<BCG.getMaxTries();i++)
   {
     std::string Guess = GetGuess();
+    std::transform(Guess.begin(),Guess.end(),Guess.begin(),::tolower);
     std::cout << "Your guess was " << Guess << std::endl << std::endl;
   }
 }
