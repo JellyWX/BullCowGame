@@ -13,15 +13,19 @@ enum class GuessMode
 class Game
 {
 public:
-  void Reset();
-  int getMaTries();
-  int getCurrentTry();
-  bool getGameWon();
+  Game();
+
+  int getMaxTries() const;
+  int getCurrentTry() const;
+  int getWordLength() const;
+  bool getGameWon() const;
   GuessMode ValidateGuess(std::string);
+  bool SubmitGuess();
+  void Reset();
   
   
 private:
-  int CurrentTry = 0;
-  int MaxTries = 5;
-  
+  int CurrentTry;
+  int MaxTries;
+  int WordLength;
 };

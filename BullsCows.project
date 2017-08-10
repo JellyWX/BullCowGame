@@ -4,6 +4,8 @@
   <Dependencies/>
   <VirtualDirectory Name="src">
     <File Name="main.cpp"/>
+    <File Name="game.cpp"/>
+    <File Name="game.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

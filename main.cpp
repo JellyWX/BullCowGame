@@ -2,28 +2,27 @@
 #include <string>
 #include "game.h"
 
+Game BCG;
 
-constexpr int LENGTH = 5;
-constexpr int TURNS = 6;
 
 void intro()
 {
   std::cout << "Welcome to Bulls and Cows.\n";
-  std::cout << "Can you guess the " << LENGTH << " letter isogram I'm thinking of?\n\n";
+  std::cout << "Can you guess the " << BCG.getWordLength() << " letter isogram I'm thinking of?\n\n";
   return;
 }
 
 std::string GetGuess()
 {
   std::string Guess = "";
-  std::cout << "Enter your guess: ";
+  std::cout << "Try " << BCG.getCurrentTry() << ": Enter your guess: ";
   std::getline(std::cin,Guess);
   return Guess;
 }
 
 void PlayGame()
 {
-  for(int i=0;i<3;i++)
+  for(int i=0;i<BCG.getMaxTries();i++)
   {
     std::string Guess = GetGuess();
     std::cout << "Your guess was " << Guess << std::endl << std::endl;
