@@ -4,9 +4,7 @@
 
 Game::Game()
 {
-  CurrentTry = 1;
-  MaxTries = 6;
-  WordLength = 5;
+  Reset(6);
 }
 
 int Game::getMaxTries() const
@@ -31,19 +29,44 @@ bool Game::getGameWon() const
 
 GuessMode Game::ValidateGuess(std::string guess)
 {
-  if(guess.length() != WordLength)
+  int GuessLen = guess.length();
+  if(GuessLen != WordLength)
   {
     return GuessMode::LENGTH_ERR;
   }
   return GuessMode::INVALID;
 }
 
-void Game::Reset()
+void Game::Reset(int tries)
 {
+  Word = "plant";
+  CurrentTry = 1;
+  MaxTries = tries;
+  WordLength = 5;
   return;
 }
 
-bool Game::SubmitGuess()
+ScoreCount Game::SubmitGuess(std::string guess)
 {
-  return false;
+  ScoreCount Score;
+  CurrentTry++;
+  
+  int GuessLen = guess.length();
+  for(int gc = 0;gc<GuessLen;gc++)
+  {
+    for(int wc = 0;wc<WordLength;wc++)
+    {
+      if(guess[gc] == Word[wc])
+      {
+        if(gc == wc)
+        {
+          Score.Bulls++;
+        }else{
+          Score.Cows++;
+        }
+      }
+    }
+  }
+  
+  return Score;
 }

@@ -6,7 +6,6 @@
 
 Game BCG;
 
-
 void intro()
 {
   std::cout << "Welcome to Bulls and Cows.\n";
@@ -28,7 +27,9 @@ void PlayGame()
   {
     std::string Guess = GetGuess();
     std::transform(Guess.begin(),Guess.end(),Guess.begin(),::tolower);
+    ScoreCount Score = BCG.SubmitGuess(Guess);
     std::cout << "Your guess was " << Guess << std::endl << std::endl;
+    std::cout << "Bulls: " << Score.Bulls << std::endl << "Cows: " << Score.Cows << std::endl;
   }
 }
 

@@ -1,6 +1,18 @@
 #pragma once
 #include <string>
 
+struct ScoreCount
+{
+  int Bulls = 0;
+  int Cows = 0;
+};
+
+enum class WinLoss
+{
+  ONGOING,
+  LOST,
+  WON
+};
 enum class GuessMode
 {
   INVALID,
@@ -20,12 +32,13 @@ public:
   int getWordLength() const;
   bool getGameWon() const;
   GuessMode ValidateGuess(std::string);
-  bool SubmitGuess();
-  void Reset();
-  
+  ScoreCount SubmitGuess(std::string);
+  void Reset(int);
   
 private:
+  std::string Word;
   int CurrentTry;
   int MaxTries;
   int WordLength;
+  WinLoss Won; 
 };
