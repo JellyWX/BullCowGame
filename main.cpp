@@ -15,21 +15,59 @@ void intro()
 
 std::string GetGuess()
 {
+  GuessMode Status = GuessMode::INVALID;
   std::string Guess = "";
-  std::cout << "Try " << BCG.getCurrentTry() << ": Enter your guess: ";
-  std::getline(std::cin,Guess);
+  
+  do
+  {
+    std::cout << "Try " << BCG.getCurrentTry() << ": Enter your guess: ";
+    std::getline(std::cin,Guess);
+    
+    Status = BCG.ValidateGuess(Guess);
+    
+    std::transform(Guess.begin(),Guess.end(),Guess.begin(),::tolower);
+
+    
+    switch(Status)
+    {
+    case GuessMode::LENGTH_ERR:
+      std::cout << "Make sure your guess is " << BCG.getWordLength() << " characters long!\n";
+      break;
+    
+    case GuessMode::NOT_ISO:
+      std::cout << "Your input should be an isogram (all different letters!)\n";
+      break;
+      
+    case GuessMode::INVALID:
+      std::cout << "Unknown error occured\n";
+      break;
+    
+    default:
+      break;
+    }
+  } while(Status != GuessMode::OK);
   return Guess;
 }
 
 void PlayGame()
 {
-  for(int i=0;i<BCG.getMaxTries();i++)
+  do
   {
     std::string Guess = GetGuess();
-    std::transform(Guess.begin(),Guess.end(),Guess.begin(),::tolower);
+    
     ScoreCount Score = BCG.SubmitGuess(Guess);
     std::cout << "Your guess was " << Guess << std::endl << std::endl;
     std::cout << "Bulls: " << Score.Bulls << std::endl << "Cows: " << Score.Cows << std::endl;
+  }
+  while(BCG.getCurrentTry()<=BCG.getMaxTries() and not BCG.getGameWon());
+  
+  if(BCG.getGameWon())
+  {
+    std::cout << "You win! Good job.\n";
+  }
+  else
+  {
+    std::cout << "You lost :( Better luck next time!\n";
   }
 }
 

@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <map>
+
 #include "game.h"
 
 Game::Game()
@@ -24,6 +26,22 @@ int Game::getWordLength() const
 
 bool Game::getGameWon() const
 {
+  return Won;
+}
+
+bool Game::getIsogram(std::string word) const
+{
+  std::map<char,bool> letter_map;
+  
+  for (char letter : word)
+  {
+    if(not letter_map[letter])
+    {
+      letter_map[letter] = true;
+    }else{
+      return true;
+    }
+  }
   return false;
 }
 
@@ -34,7 +52,14 @@ GuessMode Game::ValidateGuess(std::string guess)
   {
     return GuessMode::LENGTH_ERR;
   }
-  return GuessMode::INVALID;
+  else if(getIsogram(guess))
+  {
+    return GuessMode::NOT_ISO;
+  }
+  else
+  {
+    return GuessMode::OK;
+  }
 }
 
 void Game::Reset(int tries)
@@ -43,6 +68,7 @@ void Game::Reset(int tries)
   CurrentTry = 1;
   MaxTries = tries;
   WordLength = 5;
+  Won = false;
   return;
 }
 
@@ -66,6 +92,11 @@ ScoreCount Game::SubmitGuess(std::string guess)
         }
       }
     }
+  }
+  
+  if(Score.Bulls == WordLength)
+  {
+    Won = true;
   }
   
   return Score;

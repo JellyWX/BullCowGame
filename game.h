@@ -7,12 +7,7 @@ struct ScoreCount
   int Cows = 0;
 };
 
-enum class WinLoss
-{
-  ONGOING,
-  LOST,
-  WON
-};
+
 enum class GuessMode
 {
   INVALID,
@@ -40,5 +35,6 @@ private:
   int CurrentTry;
   int MaxTries;
   int WordLength;
-  WinLoss Won; 
+  bool getIsogram(std::string) const;
+  bool Won; 
 };
