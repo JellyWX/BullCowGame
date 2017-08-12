@@ -28,7 +28,7 @@ public:
   bool getGameWon() const;
   GuessMode ValidateGuess(std::string);
   ScoreCount SubmitGuess(std::string);
-  void Reset(int);
+  void Reset(std::string);
   
 private:
   std::string Word;

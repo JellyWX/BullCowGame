@@ -6,12 +6,13 @@
 
 Game::Game()
 {
-  Reset(6);
+  Reset("plant");
 }
 
 int Game::getMaxTries() const
 {
-  return MaxTries;
+  std::map<int,int> Tries {{3,5},{4,10},{5,15},{6,20},{7,30}};
+  return Tries[WordLength];
 }
 
 int Game::getCurrentTry() const
@@ -62,12 +63,12 @@ GuessMode Game::ValidateGuess(std::string guess)
   }
 }
 
-void Game::Reset(int tries)
+void Game::Reset(std::string word)
 {
-  Word = "plant";
+  Word = word;
   CurrentTry = 1;
-  MaxTries = tries;
-  WordLength = 5;
+  WordLength = Word.length();
+  MaxTries = getMaxTries();
   Won = false;
   return;
 }

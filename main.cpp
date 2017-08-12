@@ -20,7 +20,7 @@ std::string GetGuess()
   
   do
   {
-    std::cout << "Try " << BCG.getCurrentTry() << ": Enter your guess: ";
+    std::cout << "Try " << BCG.getCurrentTry() << "/" << BCG.getMaxTries() << ": Enter your guess: ";
     std::getline(std::cin,Guess);
     
     Status = BCG.ValidateGuess(Guess);
@@ -31,15 +31,15 @@ std::string GetGuess()
     switch(Status)
     {
     case GuessMode::LENGTH_ERR:
-      std::cout << "Make sure your guess is " << BCG.getWordLength() << " characters long!\n";
+      std::cout << "Make sure your guess is " << BCG.getWordLength() << " characters long!\n\n";
       break;
     
     case GuessMode::NOT_ISO:
-      std::cout << "Your input should be an isogram (all different letters!)\n";
+      std::cout << "Your input should be an isogram (all different letters!)\n\n";
       break;
       
     case GuessMode::INVALID:
-      std::cout << "Unknown error occured\n";
+      std::cout << "Unknown error occured\n\n";
       break;
     
     default:
@@ -85,6 +85,7 @@ int main()
 {
   do
   {
+    BCG.Reset("plant");
     intro();
     PlayGame();
   }
